@@ -39,14 +39,11 @@ public class sentence
                previous = word;
             }
         }
-        System.out.println(freq.getFrequency("the"));
-        System.out.println(bifreq.getBifrequency("i am"));
-        System.out.println(bifreq.getBifrequency("i can"));
-        System.out.println("i " + list.getNextWord("i"));
-        System.out.println("after " + list.getNextWord("after"));
+      Scanner in = new Scanner(System.in);
+      String next = in.next();
+      System.out.println(next + " " + list.getNextWord(next));
+      System.out.println(freq.getFrequency(next));
 
- 
-        System.out.println(c);
 
                        
     }

@@ -32,17 +32,22 @@ public class AdjacencyList
 
         Double highestProbability = 0.0;
         String nextWord = "";
+        Double totalFrequency = 0.0;
         for(String candidate: hm.get(previous))
         {
-            Double andProbability = bifreq.getBifrequency(previous + " " + candidate);
-            Double individualProbability = freq.getFrequency(candidate);
-            Double finalProbability = andProbability/individualProbability;
-            if (finalProbability > highestProbability)
+            totalFrequency += bifreq.getBifrequency(previous + " " + candidate);
+        }
+        for(String candidate: hm.get(previous))
+        {
+            Double probability = bifreq.getBifrequency(previous + " " + candidate)/totalFrequency;
+
+            if (probability > highestProbability)
             {
                 nextWord = candidate;
-                finalProbability = highestProbability;
+                highestProbability = probability;
             }
         }
+        System.out.println(highestProbability);
         return nextWord;
 
     }
