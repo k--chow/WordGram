@@ -1,3 +1,4 @@
+package Model;
 import java.util.*;
 
 public class Frequency
@@ -10,7 +11,6 @@ public class Frequency
     public static Frequency getInstance() {
         return freq;
     }
-
     public Double getFrequency(String word)
     {
         if (hm.containsKey(word)) {

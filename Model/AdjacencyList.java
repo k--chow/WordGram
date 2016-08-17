@@ -1,3 +1,4 @@
+package Model;
 import java.util.*;
 
 public class AdjacencyList
@@ -46,8 +47,7 @@ public class AdjacencyList
                 nextWord = candidate;
                 highestProbability = probability;
             }
-        }
-        System.out.println(highestProbability);
+        } 
         return nextWord;
 
     }

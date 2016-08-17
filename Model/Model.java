@@ -1,14 +1,17 @@
+package Model;
 import java.util.*;
 import java.io.*;
 import java.math.*;
 
-public class sentence
-{
-    public static void main(String [] args) throws IOException
-    {
-        Frequency freq = Frequency.getInstance();
-        Bifrequency bifreq = Bifrequency.getInstance();
-        AdjacencyList list = AdjacencyList.getInstance();
+public class Model
+{    
+       private Frequency freq = Frequency.getInstance();
+       private Bifrequency bifreq = Bifrequency.getInstance();
+       private AdjacencyList list = AdjacencyList.getInstance();
+       public Model()
+       {
+        try 
+        {    
         BufferedReader br = new BufferedReader(new FileReader("/Users/kchow/dropbox/projects/N-gram/big.txt.save"));
         StringTokenizer tk;
         String line = null;
@@ -34,17 +37,25 @@ public class sentence
                {
                    String pair = previous + " " + word;
                    bifreq.update(pair); 
-                   list.update(previous, word);}
+                   list.update(previous, word);
+               }
                //set to previous
                previous = word;
             }
         }
-      Scanner in = new Scanner(System.in);
-      String next = in.next();
-      System.out.println(next + " " + list.getNextWord(next));
-      System.out.println(freq.getFrequency(next));
 
-
+        }                
+        catch (IOException ex)
+        {
+            System.out.println(ex);
+        }
+          
+        }
+      
+      public String getWord(String next)
+      {
+         return list.getNextWord(next);
+      }
                        
-    }
 }
+
