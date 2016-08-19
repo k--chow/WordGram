@@ -8,16 +8,14 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 import Model.*;
 
-public class Controller
+public class MyKeyListener implements KeyListener
 {
-    private Model model;
-    public Controller(Model model)
-    {
-        this.model = model;
-    }
+        private Model model;
+        public MyKeyListener(Model model)
+        {
+            this.model = model;
+        }
 
-    public class MyKeyListener implements KeyListener
-    {
         private String word = "";
         public void keyPressed(KeyEvent e){
         if (e.getKeyCode() != KeyEvent.VK_SPACE){
@@ -36,9 +34,8 @@ public class Controller
         public void keyReleased(KeyEvent e) {
         }
     
-    }
-
 }
+
 
 
 

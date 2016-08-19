@@ -9,8 +9,8 @@ public class WordGram
     {
         //Model()
         Model model = new Model();
-        System.out.println(model.getWord("sherlock"));
-        View view = new View();
+        MyKeyListener listener = new MyKeyListener(model);
+        View view = new View(listener, model);
         //View(Model)
         //Controller(Model, View)
     }
