@@ -10,11 +10,10 @@ import Model.*;
 public class View {
     private JFrame mainFrame;
     private JPanel mainPanel;
-    private MyKeyListener listener;
     private Model model;
+    private static JTextArea editor;
 
-    public View(MyKeyListener listener, Model model) {
-        this.listener = listener;
+    public View(Model model) {
         this.model = model;
         begin();
         showEditor();
@@ -24,24 +23,43 @@ public class View {
     {
         mainFrame = new JFrame("WordGram");
         mainPanel = new JPanel(new BorderLayout());
-        mainFrame.setSize(400,400);
-        mainFrame.setLayout(new GridLayout(3, 1));
+        mainFrame.setSize(600, 600);
+        mainFrame.setLayout(new GridLayout(1, 1));
         mainFrame.setVisible(true);
         mainFrame.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent windowEvent){
         System.exit(0);
-        }        
-        });    
+        }
+        });
     }
 
     public void showEditor()
     {
-        JTextArea editor = new JTextArea(5, 40);
-        editor.addKeyListener(this.listener);
-        mainPanel.add(editor);
+        editor = new JTextArea(40, 40);
+        JScrollPane scrollPane = new JScrollPane(editor);
+        editor.setLineWrap(true);
+        mainPanel.add(scrollPane);
+        //mainPanel.add(editor, BorderLayout.CENTER);
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
+
+    public void addCompletionListener(MyKeyListener listener)
+    {
+      editor.addKeyListener(listener);
+    }
+
+    public static class CompletionTask implements Runnable {
+      String completion;
+
+      public CompletionTask(String completion)
+      {
+        this.completion = completion;
+      }
+
+      public void run()
+      {
+        editor.insert(completion, 5);
+      }
+    }
 }
-
-

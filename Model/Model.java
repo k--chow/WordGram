@@ -4,14 +4,14 @@ import java.io.*;
 import java.math.*;
 
 public class Model
-{    
+{
        private Frequency freq = Frequency.getInstance();
        private Bifrequency bifreq = Bifrequency.getInstance();
        private AdjacencyList list = AdjacencyList.getInstance();
        public Model()
        {
-        try 
-        {    
+        try
+        {
         BufferedReader br = new BufferedReader(new FileReader("/Users/kchow/dropbox/projects/N-gram/big.txt.save"));
         StringTokenizer tk;
         String line = null;
@@ -36,7 +36,7 @@ public class Model
                if (previous != null)
                {
                    String pair = previous + " " + word;
-                   bifreq.update(pair); 
+                   bifreq.update(pair);
                    list.update(previous, word);
                }
                //set to previous
@@ -44,18 +44,17 @@ public class Model
             }
         }
 
-        }                
+        }
         catch (IOException ex)
         {
             System.out.println(ex);
         }
-          
+
         }
-      
+
       public String getWord(String next)
       {
          return list.getNextWord(next);
       }
-                       
-}
 
+}

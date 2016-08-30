@@ -18,12 +18,12 @@ public class AdjacencyList
         if (hm.containsKey(previous))
         {
             hm.get(previous).add(word);
-            //System.out.println(hm.get(previous)); 
+            //System.out.println(hm.get(previous));
         } else {
             hm.put(previous, new HashSet<String> ());
                     }
     }
-    
+
     public String getNextWord(String previous)
     {
         if (!hm.containsKey(previous))
@@ -47,7 +47,7 @@ public class AdjacencyList
                 nextWord = candidate;
                 highestProbability = probability;
             }
-        } 
+        }
         return nextWord;
 
     }
