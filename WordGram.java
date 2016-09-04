@@ -9,9 +9,10 @@ public class WordGram
     {
         //Model()
         Model model = new Model();
-        MyKeyListener listener = new MyKeyListener(model);
+        //MyKeyListener listener = new MyKeyListener(model);
         View view = new View(model);
-        view.addCompletionListener(listener);
+        Controller controller = new Controller(model, view);
+        //view.addCompletionListener();
         //View.editor.addKeyListener(this.listener);
         //View(Model)
         //Controller(Model, View)

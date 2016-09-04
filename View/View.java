@@ -38,28 +38,34 @@ public class View {
         editor = new JTextArea(40, 40);
         JScrollPane scrollPane = new JScrollPane(editor);
         editor.setLineWrap(true);
+        editor.setBackground(Color.BLACK);
+        editor.setForeground(Color.WHITE);
+        editor.setCaretColor(Color.WHITE);
+        scrollPane.setBackground(Color.BLACK);
         mainPanel.add(scrollPane);
         //mainPanel.add(editor, BorderLayout.CENTER);
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
 
-    public void addCompletionListener(MyKeyListener listener)
+    public void addCompletionListener(MyDocumentListener listener)
     {
-      editor.addKeyListener(listener);
+      editor.getDocument().addDocumentListener(listener);
     }
 
     public static class CompletionTask implements Runnable {
+      int pos;
       String completion;
 
-      public CompletionTask(String completion)
+      public CompletionTask(String completion, int pos)
       {
+        this.pos = pos;
         this.completion = completion;
       }
 
       public void run()
       {
-        editor.insert(completion, 5);
+          editor.insert(completion, pos);
       }
     }
 }

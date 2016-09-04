@@ -30,7 +30,7 @@ public class MyKeyListener implements KeyListener
             SwingUtilities.invokeLater(
                         new CompletionTask(newWord, pos + 1));
             }*/
-            //SwingUtilities.invokeLater(new View.CompletionTask(newWord));
+            SwingUtilities.invokeLater(new View.CompletionTask(newWord));
           }
           word = "";
         }
