@@ -13,8 +13,10 @@ import View.*;
 
 public class MyDocumentListener implements DocumentListener{
     private Model model;
-    public MyDocumentListener(Model model) {
+    private View view;
+    public MyDocumentListener(Model model, View view) {
       this.model = model;
+      this.view = view;
     }
     public void insertUpdate(DocumentEvent e) {
       if (e.getLength() != 1) {
@@ -41,12 +43,20 @@ public class MyDocumentListener implements DocumentListener{
         newWord = model.getWord(lastWord);
         System.out.println(lastWord + " " + newWord);
         if (newWord != null) {
-          SwingUtilities.invokeLater(new View.CompletionTask(newWord, pos + 1));
+          view.autocompleteTask(newWord, pos + 1);
         }
+      } else if (view.getStatus()){
+        int i = line.length()-1;
+        int j;
+        while(line.substring(i, i+1).trim().length() != 0 && i > 0) {
+          i--;
+        }
+        j = line.length() - i;
+        view.wordcompleteTask(i+2, j);
       }
 
       //else autocomplete
-
+      //remove actual word
       //get offset position
 
       //get line, find previous word

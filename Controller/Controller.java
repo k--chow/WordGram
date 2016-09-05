@@ -19,7 +19,7 @@ public class Controller {
       this.view = view;
 
       //listeners
-      view.addCompletionListener(new MyDocumentListener(model));
+      view.addCompletionListener(new MyDocumentListener(model, view));
     }
 
 
